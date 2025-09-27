@@ -15,10 +15,10 @@ public class Person {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Person{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", salary=").append(salary);
-        sb.append(", age").append(age);
-        sb.append(", weight=").append(weight);
+        sb.append("name =").append(name);
+        sb.append(", salary =").append(salary);
+        sb.append(", age ").append(age);
+        sb.append(", weight = ").append(weight);
         sb.append('}');
         return sb.toString();
     }
@@ -35,5 +35,15 @@ public class Person {
     @Run
     public String getSalary() {
         return salary;
+    }
+    private void setName (String name){
+        this.name = name;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+    @Run
+    private void setSalary(String salary){
+        this.salary=salary;
     }
 }
