@@ -18,7 +18,7 @@ public class ReflectionUtilsTest {
         assertEquals(Person.class, person.getClass());
     }
     @Test
-    void shouldFindMethodsWithNoParameters() throws IllegalAccessException {
+    void shouldFindMethodsWithNoParameters() {
 
        Person person = new Person();
        person.name = " Danylo";
@@ -26,19 +26,19 @@ public class ReflectionUtilsTest {
        person.age = 23;
        person.weight = 100;
 
-       reflectionUtils.showMethodsWithNoParameters(person);
-       reflectionUtils.showNonPublicMethods(Person.class);
-       reflectionUtils.changePrivateFieldsToNull(person);
-       reflectionUtils.showMethodsWithFinal(person);
-       reflectionUtils.showAllParentClassAndInterfaces(Person.class);
+       reflectionUtils.showMethodsWithNoParameters(Person.class);
 
     }
     @Test
-    void shouldInvokeMethodsWithFinalModifiers(){
+    void shouldFindMethodsWithFinalModifiers(){
 
 
 
        // reflectionUtils.invokeMethodsWithFinal(person);
+
+    }
+    @Test
+    void shouldShowAllSuperClasses(){
 
     }
 }

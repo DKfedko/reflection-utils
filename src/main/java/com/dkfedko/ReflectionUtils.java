@@ -3,22 +3,18 @@ package com.dkfedko;
 import com.dkfedko.anotation.Inject;
 import com.dkfedko.anotation.Run;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-
 public class ReflectionUtils {
-
     public <T> T createObject(Class<T> clazz)
             throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         return clazz.getDeclaredConstructor().newInstance();
     }
 
     public <T> void showMethodsWithNoParameters(T object) {
-
         for (Method method : object.getClass().getDeclaredMethods()) {
             if (method.getParameterCount() == 0) {
                 method.setAccessible(true);
@@ -26,7 +22,6 @@ public class ReflectionUtils {
             }
         }
     }
-
     public <T> void showMethodsWithFinal(T object) {
         Method[] methods = object.getClass().getDeclaredMethods();
         for (Method method : methods) {
@@ -34,7 +29,6 @@ public class ReflectionUtils {
                 System.out.println(method.getName());
         }
     }
-
     public <T> void showNonPublicMethods(Class<T> clazz) {
         Method[] methods = clazz.getDeclaredMethods();
         for (Method method : methods) {
@@ -54,9 +48,7 @@ public class ReflectionUtils {
         for (Class<?> interfacezz : interfaces) {
             System.out.println(interfacezz.getName());
         }
-
 }
-
     public <T> void changePrivateFieldsToNull(T object) throws IllegalAccessException {
         Field[] fields = object.getClass().getDeclaredFields();
         for (Field field : fields) {
@@ -67,7 +59,6 @@ public class ReflectionUtils {
             }
         }
     }
-
     public <T> void getRunAnnotatedMethods(T object) {
         Method[] methods = object.getClass().getDeclaredMethods();
         for (Method method : methods) {
@@ -76,7 +67,6 @@ public class ReflectionUtils {
                 System.out.println(method.getName());
         }
     }
-
 //    public <T> void injectAnnotatedFields(T object) {
 //        Field[] fields = object.getClass().getDeclaredFields();
 //        for (Field field : fields) {
