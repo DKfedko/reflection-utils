@@ -1,6 +1,5 @@
 package com.dkfedko;
 
-import com.dkfedko.anotation.Inject;
 import com.dkfedko.anotation.Run;
 
 import java.lang.reflect.Field;
@@ -15,7 +14,8 @@ public class ReflectionUtils {
     }
 
     public <T> void showMethodsWithNoParameters(T object) {
-        for (Method method : object.getClass().getDeclaredMethods()) {
+        Class<?> clazz = object.getClass();
+        for (Method method : clazz.getDeclaredMethods()) {
             if (method.getParameterCount() == 0) {
                 method.setAccessible(true);
                 System.out.println(method.getName());
@@ -23,7 +23,8 @@ public class ReflectionUtils {
         }
     }
     public <T> void showMethodsWithFinal(T object) {
-        Method[] methods = object.getClass().getDeclaredMethods();
+        Class<?> clazz = object.getClass();
+        Method[] methods = clazz.getDeclaredMethods();
         for (Method method : methods) {
             if (Modifier.isFinal(method.getModifiers()))
                 System.out.println(method.getName());
@@ -49,7 +50,7 @@ public class ReflectionUtils {
             System.out.println(interfacezz.getName());
         }
 }
-    public <T> void changePrivateFieldsToNull(T object) throws IllegalAccessException {
+    public <T> void changePrivateFieldsToDefaultValue (T object) throws IllegalAccessException {
         Field[] fields = object.getClass().getDeclaredFields();
         for (Field field : fields) {
             if (Modifier.isPrivate(field.getModifiers())) {
@@ -67,6 +68,8 @@ public class ReflectionUtils {
                 System.out.println(method.getName());
         }
     }
+//     public void changePrivateFieldsToDefaultValue  {
+//    }
 //    public <T> void injectAnnotatedFields(T object) {
 //        Field[] fields = object.getClass().getDeclaredFields();
 //        for (Field field : fields) {

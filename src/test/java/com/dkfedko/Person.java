@@ -25,7 +25,7 @@ public class Person {
     public String getName() {
         return name;
     }
-    private double getWeight() {
+    public double getWeight() {
         return weight;
     }
     @Run
@@ -36,14 +36,25 @@ public class Person {
     public String getSalary() {
         return salary;
     }
-    private void setName (String name){
+    public void setName (String name){
         this.name = name;
     }
     public void setAge(int age) {
         this.age = age;
     }
     @Run
-    private void setSalary(String salary){
+    public void setSalary(String salary){
         this.salary=salary;
+    }
+    public void setWeight(double weight){
+        this.weight=weight;
+    }
+    public double calculateOvertimes(int days, double rate, double overTimeRate) {
+        if (days<=21){
+            return days*rate;
+        }else{
+            int overTimeDays = days - 21;
+            return (21*rate)+(overTimeDays*rate*overTimeRate);
+        }
     }
 }
