@@ -35,6 +35,7 @@ public class ReflectionUtils {
         for (Method method : methods) {
             method.getModifiers();
             if (!Modifier.isPublic(method.getModifiers())) {
+                method.setAccessible(true);
                 System.out.println(method.getName());
             }
         }
@@ -53,11 +54,38 @@ public class ReflectionUtils {
     public <T> void changePrivateFieldsToDefaultValue (T object) throws IllegalAccessException {
         Field[] fields = object.getClass().getDeclaredFields();
         for (Field field : fields) {
-            if (Modifier.isPrivate(field.getModifiers())) {
-                field.setAccessible(true);
+            field.setAccessible(true);
+
+            Class<?> type = field.getType();
+            if (type.isPrimitive()) {
+                if (type == boolean.class) {
+                    field.setBoolean(object, false);
+                }
+                if (type == int.class) {
+                    field.setInt(object, 0);
+                }
+                if (type == long.class) {
+                    field.setLong(object, 0);
+                }
+                if (type == byte.class) {
+                    field.setByte(object, (byte) 0);
+                }
+                if (type == double.class) {
+                    field.setDouble(object, 0.0d);
+                }
+                if (type == short.class) {
+                    field.setShort(object, (short) 0);
+                }
+                if (type == char.class) {
+                    field.setChar(object, '\u0000');
+                }
+                if (type == float.class) {
+                    field.setFloat(object, 0.0f);
+                }
+            } else {
                 field.set(object, null);
-                System.out.println(field.getName());
             }
+            System.out.println(field.getName());
         }
     }
     public <T> void getRunAnnotatedMethods(T object) {
