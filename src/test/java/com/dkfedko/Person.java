@@ -9,7 +9,8 @@ public class Person {
     String salary;
     @Inject
     int age;
-    double weight;
+    private double weight;
+    private final double overtimeRate = 1.48;
 
     @Override
     public String toString() {
@@ -19,10 +20,11 @@ public class Person {
         sb.append(", salary =").append(salary);
         sb.append(", age ").append(age);
         sb.append(", weight = ").append(weight);
+        sb.append(", overtimePay =").append(overtimeRate);
         sb.append('}');
         return sb.toString();
     }
-    public String getName() {
+    private String getName() {
         return name;
     }
     public double getWeight() {
@@ -42,14 +44,15 @@ public class Person {
     public void setAge(int age) {
         this.age = age;
     }
-    @Run
+
     public void setSalary(String salary){
         this.salary=salary;
     }
     public void setWeight(double weight){
         this.weight=weight;
     }
-    public double calculateOvertimes(int days, double rate, double overTimeRate) {
+    @Run
+    private final double calculateOvertimes(int days, double rate, double overTimeRate) {
         if (days<=21){
             return days*rate;
         }else{
