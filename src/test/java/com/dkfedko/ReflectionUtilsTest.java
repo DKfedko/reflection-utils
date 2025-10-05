@@ -1,8 +1,8 @@
 package com.dkfedko;
 import org.junit.jupiter.api.Test;
 import java.lang.reflect.InvocationTargetException;
-
 import static org.junit.jupiter.api.Assertions.*;
+
 
 public class ReflectionUtilsTest {
     ReflectionUtils reflectionUtils = new ReflectionUtils();
@@ -17,6 +17,7 @@ public class ReflectionUtilsTest {
         Person person = reflectionUtils.createObject(Person.class);
         assertNotNull(person);
         assertEquals(Person.class, person.getClass());
+        System.out.println(person);
     }
     @Test
     void shouldFindMethodsWithNoParameters() {
@@ -24,11 +25,10 @@ public class ReflectionUtilsTest {
        Person  person = new Person();
        reflectionUtils.showMethodsWithNoParameters(person);
        assertNotNull(person);
-       System.out.println(person);
 
     }
     @Test
-    void shouldFindMethodsWithFinalModifiers(){
+    void shouldFindMethodsWithFinalModifiers() {
 
         Person person  = new Person();
         reflectionUtils.showMethodsWithFinal(person);
@@ -46,13 +46,23 @@ public class ReflectionUtilsTest {
         reflectionUtils.showNonPublicMethods(Person.class);
 
     }
+
     @Test
     void shouldCheckIfPrivateFieldsSetToDefault() throws IllegalAccessException {
 
         Person person = new Person();
 
+        person.setName("Danylo");
+        person.age = 26;
+        person.setWeight(100);
+        person.salary = 100;
+
+        person.calculateOvertimes(21, 45, 2);
+
         reflectionUtils.changePrivateFieldsToDefaultValue(person);
+        System.out.println(person);
     }
+
     @Test
     void shouldRunAnnotatedMethods(){
 

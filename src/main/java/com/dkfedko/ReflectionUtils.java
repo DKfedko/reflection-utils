@@ -15,17 +15,20 @@ public class ReflectionUtils {
 
     public <T> void showMethodsWithNoParameters(T object) {
         Class<?> clazz = object.getClass();
+
         for (Method method : clazz.getDeclaredMethods()) {
+            method.setAccessible(true);
             if (method.getParameterCount() == 0) {
-                method.setAccessible(true);
                 System.out.println(method.getName());
             }
         }
     }
     public <T> void showMethodsWithFinal(T object) {
         Class<?> clazz = object.getClass();
+
         Method[] methods = clazz.getDeclaredMethods();
         for (Method method : methods) {
+            method.setAccessible(true);
             if (Modifier.isFinal(method.getModifiers()))
                 System.out.println(method.getName());
         }
